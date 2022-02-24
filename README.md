@@ -1,2 +1,2 @@
-# Light-GBM-Optuna-Optimization
+# LightGBM-Optuna-Optimization
 Optuna Optimization
