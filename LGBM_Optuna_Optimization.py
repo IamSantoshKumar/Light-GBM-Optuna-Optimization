@@ -37,7 +37,7 @@ def optimize(trial,x,y):
                'n_jobs': -1
     }
     
-	num_rounds=args.n_iters
+    num_rounds=args.n_iters
 	
     auc_score = []
         
@@ -54,7 +54,8 @@ def optimize(trial,x,y):
                 dtrain, 
                 num_boost_round, 
                 valid_sets=dvalid, 
-                verbose_eval=False,
+                verbose_eval=False
+	)
            
         predicted = model.predict(df_val)
         auc  = roc_auc_score(val_target, predicted)
@@ -80,6 +81,6 @@ if __name__=='__main__':
     optimize_func=partial(optimize,x=df, y=df['target'].values)
     study = optuna.create_study(direction='maximize')
     study.optimize(optimize_func, n_trials=args.n_trials)
-	trial = study.best_trial
+    trial = study.best_trial
     print('Score: {}'.format(trial.value))
-	print("Best hyperparameters: {}".format(trial.params))
+    print("Best hyperparameters: {}".format(trial.params))
